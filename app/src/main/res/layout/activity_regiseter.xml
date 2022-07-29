@@ -1,9 +1,208 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     tools:context=".RegiseterActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ConstraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/text_login1"
+            tools:layout_editor_absoluteX="19dp">
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/register_activity_fullName_et_layout"
+                app:errorTextColor="@color/error_color"
+                app:boxStrokeErrorColor="@color/error_color"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/edit_profile_Fullname"
+                app:boxBackgroundColor="@color/et_background_color"
+                app:boxCornerRadiusBottomEnd="@dimen/textInputLayout_radius"
+                app:boxCornerRadiusBottomStart="@dimen/textInputLayout_radius"
+                app:boxCornerRadiusTopEnd="@dimen/textInputLayout_radius"
+                app:boxCornerRadiusTopStart="@dimen/textInputLayout_radius"
+                app:boxStrokeColor="@color/text_input_layout_stroke_color"
+
+                app:hintTextColor="@color/et_hint_color">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/register_activity_fullName_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:fontFamily="@font/el_messiri_medium"
+                    android:inputType="text"
+                    android:padding="@dimen/_10sdp"
+                    android:textSize="@dimen/_14ssp" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/register_activity_phoneNumber_et_layout"
+                app:errorTextColor="@color/error_color"
+                app:boxStrokeErrorColor="@color/error_color"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:hint="@string/phone_number"
+                app:boxBackgroundColor="@color/et_background_color"
+                app:boxCornerRadiusBottomEnd="@dimen/textInputLayout_radius"
+                app:boxCornerRadiusBottomStart="@dimen/textInputLayout_radius"
+                app:boxCornerRadiusTopEnd="@dimen/textInputLayout_radius"
+                app:boxCornerRadiusTopStart="@dimen/textInputLayout_radius"
+                app:boxStrokeColor="@color/text_input_layout_stroke_color"
+
+                app:hintTextColor="@color/et_hint_color">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/register_activity_phoneNumber_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:fontFamily="@font/el_messiri_medium"
+                    android:inputType="phone"
+                    android:textSize="@dimen/_14ssp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/register_activity_password_et_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                app:boxBackgroundColor="@color/et_background_color"
+                app:boxCornerRadiusBottomEnd="@dimen/textInputLayout_radius"
+                app:boxCornerRadiusBottomStart="@dimen/textInputLayout_radius"
+                app:boxCornerRadiusTopEnd="@dimen/textInputLayout_radius"
+                app:boxCornerRadiusTopStart="@dimen/textInputLayout_radius"
+                app:boxStrokeColor="@color/text_input_layout_stroke_color"
+                app:passwordToggleContentDescription="@string/password"
+                app:passwordToggleEnabled="true"
+                app:errorTextColor="@color/error_color"
+                app:errorIconDrawable="@null"
+                app:boxStrokeErrorColor="@color/error_color"
+                app:passwordToggleTintMode="src_in"
+                app:hintTextColor="@color/et_hint_color"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/register_activity_password_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:fontFamily="@font/el_messiri_medium"
+                    android:hint="@string/password"
+                    android:inputType="textPassword"
+
+                    android:textSize="@dimen/_14ssp" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/register_activity_cofPassword_et_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                app:boxBackgroundColor="@color/et_background_color"
+                app:boxCornerRadiusBottomEnd="@dimen/textInputLayout_radius"
+                app:boxCornerRadiusBottomStart="@dimen/textInputLayout_radius"
+                app:boxCornerRadiusTopEnd="@dimen/textInputLayout_radius"
+                app:boxCornerRadiusTopStart="@dimen/textInputLayout_radius"
+                app:boxStrokeColor="@color/text_input_layout_stroke_color"
+                app:passwordToggleContentDescription="@string/password"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTintMode="src_in"
+                app:errorTextColor="@color/error_color"
+                app:errorIconDrawable="@null"
+                app:boxStrokeErrorColor="@color/error_color"
+                app:hintTextColor="@color/et_hint_color"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/register_activity_cofPassword_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:fontFamily="@font/el_messiri_medium"
+                    android:hint="@string/confirm_password"
+                    android:inputType="textPassword"
+
+                    android:textSize="@dimen/_14ssp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/register_activity_signup_btn"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_45sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:background="@drawable/button_background"
+                android:hint="@string/next_step"
+                android:textColorHint="@color/white"
+                android:textSize="@dimen/_16ssp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/text_login1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:fontFamily="@font/el_messiri_medium"
+            android:text="@string/create_free_account"
+            android:textColor="@color/main_text_color"
+            android:textSize="@dimen/_26ssp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/create_account_liner"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:gravity="bottom"
+            android:layout_marginBottom="@dimen/_15sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+
+            <TextView
+                android:id="@+id/register_activity_login_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:fontFamily="@font/el_messiri_medium"
+                android:text="@string/register_sign_in"
+                android:textColor="@color/primary_color"
+
+                android:textSize="@dimen/_14ssp" />
+            <TextView
+                android:id="@+id/Do_you_already_have_an_account_tv"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/el_messiri_medium"
+                android:text="@string/Do_you_already_have_an_account"
+                android:textColor="@color/second_text_color"
+                android:textSize="@dimen/_14ssp" />
+
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+</androidx.core.widget.NestedScrollView>
