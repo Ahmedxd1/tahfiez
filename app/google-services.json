@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "159478527338",
+    "firebase_url": "https://alameen-mosqe-default-rtdb.firebaseio.com",
+    "project_id": "alameen-mosqe",
+    "storage_bucket": "alameen-mosqe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:159478527338:android:a3719807ababbcfbec2113",
+        "android_client_info": {
+          "package_name": "com.ahmed.ahmed"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "159478527338-5hgcolbamk2tunlkg4jjs1j9tae815m4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUaagy8OUqXssH5afbFHZ_dg8dGe5a2EU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "159478527338-5hgcolbamk2tunlkg4jjs1j9tae815m4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
