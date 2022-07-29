@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="scroll" type="id" />
+    <item name="center_name" type="id" />
+    <item name="et_center_name" type="id" />
+    <item name="city" type="id" />
+    <item name="center_address" type="id" />
+    <item name="et_center_address" type="id" />
+    <item name="location" type="id" />
+    <item name="cycle_maximum" type="id" />
+    <item name="et_cycle_maximum" type="id" />
+    <item name="center_manger" type="id" />
+    <item name="cycle_activity" type="id" />
+    <item name="btn_save" type="id" />
+</resources>

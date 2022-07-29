@@ -7,4 +7,28 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="green">#519259</color>
+    <color name="beige">#FFF9DE</color>
+    <color name="hint">#80000000</color>
+    <color name="red">#A80404</color>
+    <color name="et_hint_color">#9DA5B3</color>
+    <color name="et_background_color">#FFFFFF</color>
+    <color name="background_color">#F4F7FC</color>
+    <color name="shimer_background_color">#B6B6B6</color>
+    <color name="editText_color">#66000000</color>#F2F2F2
+    <color name="editText_corner_color">#E4E4E4</color>
+    <color name="et_corner_color">#FFFFFF</color>
+    <color name="rectangel_corner_color_real_state">#EEEEEE</color>
+    <color name="rectangel_color_real_state">#F8F8F8</color>
+    <color name="desc_color_real_state">#7B7B7B</color>
+    <color name="main_text_color">#2B364B</color>
+    <color name="unEnable_btn_background_color">#CCD3E3</color>
+    <color name="second_text_color">#6B768D</color>
+    <color name="error_btn_background_color">#FFF2F2</color>
+    <color name="error_color">#E14248</color>
+    <color name="error_icon_color">#E02B2F</color>
+    <color name="success_color">#00C6B3</color>
+    <color name="primary_color">#0343CB</color>
+
+
 </resources>

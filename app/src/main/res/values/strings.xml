@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name">AhmedApp</string>
-    <string name="title_activity_nav_main">NavMainActivity</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyD9BbROSjwBWy75ae6sdpLdCP-DRlpS9h0</string>
+
+    <string name="app_name">quranAppTahfiez</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -9,6 +10,210 @@
     <string name="action_settings">Settings</string>
 
     <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_centers">Centers</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_messages">Messages</string>
+    <string name="menu_alldata">AllData</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="id_number">رقم الهوية</string>
+    <string name="password">كلمة المرور</string>
+    <string name="login">تسجيل الدخول</string>
+    <string name="new_user">مستخدم جديد؟</string>
+    <string name="register_now">سجل الآن</string>
+    <string name="user_name">أسم المستخدم</string>
+    <string name="email">البريد الألكتروني</string>
+    <string name="phone">رقم المحمول</string>
+    <string name="birthdate">تاريخ الميلاد</string>
+    <string name="city">الفرع</string>
+    <string name="address">العنوان</string>
+    <string name="confirm_password">تأكيد كلمة المرور</string>
+    <string name="register">إكمال التسجيل</string>
+    <string name="teacher_count">محفظ متمكن</string>
+    <string name="cycle_count">حلقة تحفيظ</string>
+    <string name="students_count">طالب مسجل</string>
+    <string name="best_student">أفضل طالب</string>
+    <string name="best_teacher">أفضل محفظ</string>
+    <string name="best_cycle">أفضل حلقة</string>
+    <string name="avg">التقييم العام</string>
+    <string name="edit">تعديل</string>
+    <string name="delete">حذف</string>
+    <string name="center_name">إسم مركز التحفيظ</string>
+    <string name="cycle_maximum">عدد الحلقات المسموح بها</string>
+    <string name="save">حفظ</string>
+    <string name="cycle_name">أسم الحلقة</string>
+    <string name="center">اسم المركز</string>
+    <string name="cycle_activity">حلقات التحفيظ</string>
+    <string name="students_list">قائمة الطلبة</string>
+    <string name="teachers_list">قائمة المحفظين</string>
+    <string name="cycle">أسم حلقة التحفيظ</string>
+    <string name="students_maximum">عدد الطلبة المسموح في الحلقة</string>
+    <string name="description">الوصف</string>
+    <string name="teacher_name">أسم المحفظ</string>
+    <string name="cycle_list">قائمة الحلقات</string>
+    <string name="student_name">أسم الطالب</string>
+    <string name="tasks">المهام</string>
+    <string name="students_review">تقييم الطالب</string>
+    <string name="review_date">اليوم والتاريخ</string>
+    <string name="teacher_review">الشخص المقيم</string>
+    <string name="review_details">تفاصيل المهمة</string>
+    <string name="review">التقييم (1-10)، 0 إذا لم تكتمل المهمة</string>
+    <string name="review_notes">ملاحظات على التقييم</string>
+    <string name="task_expired">تاريخ إنتهاء المهمة</string>
+    <string name="supervisor_name">أسم المشرف</string>
+    <string name="publisher_name">أسم الناشر</string>
+    <string name="publish_date">تاريخ النشر</string>
+    <string name="ads_content">محتوى الأعلان</string>
+    <string name="puplish">نشر</string>
+    <string name="error">الرجاء ادخل قيمة صحيحة</string>
+    <string name="main">الرئيسية</string>
+    <string name="centers">مراكز التحفيظ</string>
+    <string name="all_data">كل البيانات</string>
+    <string name="settings">الأعدادات</string>
+    <string name="messages">رسائل الطالب</string>
+
+    <string-array name="city_array">
+        <item>غزة</item>
+        <item>شمال غزة</item>
+        <item>الوسطى</item>
+        <item>خانيونس</item>
+        <item>رفح</item>
+    </string-array>
+
+    <string-array name="taskType_array">
+        <item>جزء</item>
+        <item>حزب</item>
+        <item>ربع</item>
+        <item>سورة</item>
+        <item>صفحة</item>
+        <item>أية</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="gps_error">قم بتفعيل GPS</string>
+    <string name="title_activity_show_maps">ShowMapsActivity</string>
+    <string name="done">تم الأضافة بنجاح</string>
+    <string name="mangerName">مشرف  الحلقة</string>
+    <string name="update">تم التعديل بنجاح</string>
+    <string name="add_supervisor">إضافة بيانات مشرف</string>
+    <string name="editSupervisor">تعديل بيانات المشرف</string>
+
+    <string name="example">"\u2605"</string>
+    <string name="no_supervisor_avillable">لا يوجد مشرف</string>
+    <string name="dont_complete">لم تكتمل</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <string name="search">بحث</string>
+    <string name="center_avg">التقييم العام للمركز</string>
+    <string name="cycle_avg">التقييم العام للحلقة</string>
+    <string name="empty_field">هناك حقل فارغ</string>
+    <string name="used_phone">هذا الهاتف مستخدم بالفعل</string>
+    <string name="age_error">يجب أن يكون فوق 18 عام</string>
+    <string name="not_match">كلم المرور غير متطابقة</string>
+    <string name="valid_value">أدخل قيمة صالحة</string>
+    <string name="used_id">رقم الهوية مستخدم من قبل</string>
+    <string name="choose_img">أختر صورة</string>
+    <string name="used_email">هذا الأيميل مستخدم بالفعل</string>
+    <string name="add_location">أختر الموقع</string>
+    <string name="from">من</string>
+    <string name="to">إلى</string>
+    <string name="student_review">التقييم العام للطالب</string>
+    <string name="date_from">من تاريخ</string>
+    <string name="date_to">الى تاريخ</string>
+    <string name="change_password">تغيير كلمة المرور</string>
+    <string name="old_password">كلمة المرور القديمة</string>
+    <string name="new_password">كلمة المرور الجديدة</string>
+    <string name="confirm_new_password">تأكيد كلمة المرور الجديدة</string>
+    <string name="ok">موافق</string>
+    <string name="cancel">إلغاء</string>
+    <string name="logout">تسجيل الخروج</string>
+    <string name="select_backup_time">تحديد مدة المزامنة</string>
+    <string name="backup_tim">مدة المزامنة</string>
+    <string name="backup">مزامنة البيانات</string>
+    <string name="enable_sms_mode">تفعيل وضع الرسائل</string>
+    <string name="sms">الرسائل</string>
+    <string name="click_change_pass">أنقر لتغيير كلمة المرور</string>
+    <string name="select_language">الرجاء تحديد اللغة</string>
+    <string name="language">اللغة</string>
+    <string name="backup_and_upload">المزامنة ورفع البيانات</string>
+    <string name="profile">الملف الشخصي</string>
+    <string name="groups">الحلقات</string>
+    <string name="Supervisors">المشرفين</string>
+    <string name="teachers">المحفظين</string>
+    <string name="students">الطلبة</string>
+    <string name="name">الأسم</string>
+    <string name="centr">المركز</string>
+    <string name="cycl">الحلقة</string>
+    <string name="adding_date">تارخ الأضافة</string>
+    <string name="task_description">تفاصيل المهمة</string>
+    <string name="taster_name">الشخص المختبر</string>
+    <string name="add_center">أضافة مركز</string>
+    <string name="add_cycle">أضافة حلقة</string>
+    <string name="add_teacher">أضافة محفظ</string>
+    <string name="add_super">أضافة مشرف</string>
+    <string name="add_student">أضافة طالب</string>
+
+    <string-array name="language_title">
+        <item>English</item>
+        <item>العربية</item>
+    </string-array>
+
+    <string-array name="language_value">
+        <item>en</item>
+        <item>ar</item>
+    </string-array>
+
+
+    <string-array name="backup_title">
+        <item>يوميا</item>
+        <item>أسبوعيا</item>
+        <item>شهريا</item>
+    </string-array>
+
+    <string-array name="backup_value">
+        <item>1</item>
+        <item>7</item>
+        <item>30</item>
+    </string-array>
+    <string name="title_activity_login">واجهة تسجيل الدخول</string>
+    <string name="prompt_email">البريد الالكتروني</string>
+    <string name="prompt_password">كلمة المرور  </string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">تسجيل الدخول</string>
+    <string name="welcome">"مرحبا !"</string>
+    <string name="invalid_username">اسم المستخدم عير صالح</string>
+    <string name="invalid_password">كلمة المرور يجب ان تكون اكبر من 5 احرف</string>
+    <string name="phone_number">رقم الهاتف المحمول</string>
+    <string name="enter_password">رقم الهاتف المحمول</string>
+    <string name="enter_phone_number">رقم الهاتف المحمول</string>
+    <string name="thisUserDoesNotExist">هذا المستخدم غير موجود</string>
+    <string name="inCrrectPassword">كلمة المرور غير صحيحة</string>
+    <string name="sign_inFail">فشل تسجيل الدخول</string>
+    <string name="edit_profile_tv_EditProfile">تعديل الملف الشخصي</string>
+    <string name="edit_profile_Fullname">الإسم كاملاً</string>
+    <string name="edit_profile_EMAIL">البريد الإلكتروني</string>
+    <string name="edit_profile_phoneNumber">رقم الجوال</string>
+    <string name="next_step">الخطوة التالية</string>
+    <string name="create_free_account">إنشاء حساب \n مجاني</string>
+    <string name="Do_you_already_have_an_account">هل تمتلك حساب ؟</string>
+    <string name="register_sign_in">تسجيل الدخول!</string>
+    <string name="remember_me">تذكرني</string>
+    <string name="welcome_back">مرحباً بعودتك </string>
+    <string name="forget_password">نسيت كلمة المرور ؟</string>
+    <string name="dont_have_an_account">لا تمتلك اي حساب ؟</string>
+    <string name="create_account">إنشاء حساب </string>
+
+    <string name="enter_your_full_name">أدخل الإسم كاملاً</string>
+    <string name="required">هذا الحقل مطلوب</string>
+    <string name="msg_phone_number_start_with">\"phone number should start 059\"</string>
+    <string name="msg_week_passwrod">كلمة المرور ضعيفة</string>
+    <string name="msg_write_cnf_correctly">اكتب تأكيد كلمة المرور بشكل صحيح</string>
+    <string name="enter_the_code">أدخل الكود</string>
+    <string name="enter_several_digit">Enter the several-digit code we sent to your \nphone to confirm your number</string>
+    <string name="ididnotReciveAnyCode">I didn\'t recive any code</string>
+    <string name="resend">إعادة إرسال</string>
+    <string name="chats">Chats</string>
+    <string name="keepGoing">إستمر</string>
+
+
 </resources>

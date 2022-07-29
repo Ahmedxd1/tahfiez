@@ -1,19 +1,205 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources xmlns:tools="http://schemas.android.com/tools" xmlns:ns1="http://schemas.android.com/apk/res-auto">
     <!-- Base application theme. -->
-    <style name="Theme.AhmedApp" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="Theme.QuranAppTahfiez" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryDark">@color/purple_700</item>
-        <item name="colorAccent">@color/teal_200</item>
+        <item name="colorPrimary">@color/green</item>
+        <item name="colorPrimaryVariant">@color/green</item>
+        <item name="colorOnPrimary">#F0BB62</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@color/beige</item>
+        <item name="android:listDivider">@color/beige</item>
     </style>
 
-    <style name="Theme.AhmedApp.NoActionBar">
+    <style name="Theme.QuranAppTahfiez.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+    <style name="TextInputLayoutAppearance" parent="Widget.Design.TextInputLayout">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorHint">@color/hint</item>
+        <item name="colorControlNormal">@drawable/disable_and_enable</item>
+        <item name="colorControlActivated">@color/green</item>
+        <item name="android:textColorPrimary">@drawable/disable_and_enable</item>
+    </style>
+    <style name="ThemeButton" parent="TextAppearance.AppCompat.Widget.Button" >
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@color/green</item>
+        <item name="android:textSize">@dimen/_14sdp</item>
+        <item name="android:fontFamily">@font/el_messiri_medium</item>
+    </style>
 
-    <style name="Theme.AhmedApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="ThemeSpinner">
+        <!-- Color when pressed -->
+        <item name="colorAccent">@color/green</item>
+        <!-- Default color for the dropdown arrow and line -->
+        <item name="colorControlNormal">@drawable/disable_and_enable</item>
+        <item name="android:textColor">@drawable/disable_and_enable</item>
+        <item name="android:popupBackground">@color/white</item>
+        <item name="android:background">@color/beige</item>
+    </style>
 
-    <style name="Theme.AhmedApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+<!--    <style name="Theme.QuranAppTahfiez.NoActionBar" tools:ignore="DuplicateDefinition">-->
+<!--        <item name="windowActionBar">false</item>-->
+<!--        <item name="windowNoTitle">true</item>-->
+<!--   </style>-->
+    <style name="Theme.QuranAppTahfiez.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.QuranAppTahfiez.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
+        <item name="materialThemeOverlay">
+            @style/ThemeOverlay.MaterialComponents.TextInputEditText.FilledBox.Dense
+        </item>
+    </style>
+    <style name="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense.ExposedDropdownMenu">
+        <item name="materialThemeOverlay">
+            @style/ThemeOverlay.MaterialComponents.AutoCompleteTextView.FilledBox.Dense
+        </item>
+        <item name="endIconMode">dropdown_menu</item>
+    </style>
+    <style name="Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">
+        <item name="materialThemeOverlay">
+            @style/ThemeOverlay.MaterialComponents.AutoCompleteTextView.FilledBox
+        </item>
+        <item name="endIconMode">dropdown_menu</item>
+    </style>
+    <style name="Widget.MaterialComponents.TextInputLayout.OutlinedBox" parent="Base.Widget.MaterialComponents.TextInputLayout">
+        <item name="materialThemeOverlay">
+            @style/ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox
+        </item>
+        <item name="boxCollapsedPaddingTop">0dp</item>
+    </style>
+    <style name="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="materialThemeOverlay">
+            @style/ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox.Dense
+        </item>
+    </style>
+    <style name="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">
+        <item name="materialThemeOverlay">
+            @style/ThemeOverlay.MaterialComponents.AutoCompleteTextView.OutlinedBox.Dense
+        </item>
+        <item name="endIconMode">dropdown_menu</item>
+    </style>
+    <style name="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="materialThemeOverlay">
+            @style/ThemeOverlay.MaterialComponents.AutoCompleteTextView.OutlinedBox
+        </item>
+        <item name="endIconMode">dropdown_menu</item>
+    </style>
+    <style name="Widget.MaterialComponents.TextView" parent="Base.Widget.MaterialComponents.TextView"/>
+    <style name="Widget.MaterialComponents.TimePicker" parent="">
+        <item name="shapeAppearance">?shapeAppearanceMediumComponent</item>
+        <item name="keyboardIcon">@drawable/ic_keyboard_black_24dp</item>
+        <item name="clockIcon">@drawable/ic_clock_black_24dp</item>
+    </style>
+    <style name="Widget.MaterialComponents.TimePicker.Button" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="backgroundTint">
+            @color/material_timepicker_button_background
+        </item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:textAppearance">?attr/textAppearanceSubtitle2</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="strokeColor">@color/material_timepicker_button_stroke</item>
+        <item name="strokeWidth">@dimen/mtrl_btn_stroke_size</item>
+    </style>
+    <style name="Widget.MaterialComponents.TimePicker.Clock" parent="">
+        <item name="clockFaceBackgroundColor">@color/material_timepicker_clockface</item>
+        <item name="clockHandColor">?attr/colorPrimary</item>
+        <item name="clockNumberTextColor">@color/material_timepicker_clock_text_color</item>
+    </style>
+    <style name="Widget.MaterialComponents.TimePicker.Display" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="ensureMinTouchTargetSize">false</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textAppearance">?attr/textAppearanceHeadline3</item>
+        <!-- No need to scale here since the text is already readable -->
+        <item name="android:textSize" ns1:ignore="SpUsage">56dp</item>
+        <item name="shapeAppearanceOverlay">?shapeAppearanceMediumComponent</item>
+        <item name="materialThemeOverlay">@style/ThemeOverlay.MaterialComponents.TimePicker.Display</item>
+    </style>
+    <style name="Widget.MaterialComponents.TimePicker.Display.Divider" parent="">
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:lineSpacingExtra">0dp</item>
+        <item name="android:maxEms">1</item>
+        <item name="android:text">@string/material_clock_display_divider</item>
+        <item name="android:textAppearance">?attr/textAppearanceHeadline3</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="android:textSize">56dp</item>
+    </style>
+    <style name="Widget.MaterialComponents.TimePicker.Display.HelperText" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textAppearance">?attr/textAppearanceCaption</item>
+    </style>
+    <style name="Widget.MaterialComponents.TimePicker.Display.TextInputEditText" parent="Widget.MaterialComponents.TextInputEditText.OutlinedBox">
+        <item name="android:textAppearance">?attr/textAppearanceHeadline3</item>
+        <item name="android:textSize" ns1:ignore="SpUsage">56dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:inputType">number</item>
+        <item name="android:maxLength">2</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:minEms">2</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingStart">0dp</item>
+        <item name="android:paddingEnd">0dp</item>
+    </style>
+    <style name="Widget.MaterialComponents.TimePicker.Display.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.MaterialComponents.TimePicker.Display.TextInputEditText</item>
+    </style>
+    <style name="Widget.MaterialComponents.TimePicker.ImageButton" parent="">
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:minWidth">?attr/minTouchTargetSize</item>
+        <item name="android:minHeight">?attr/minTouchTargetSize</item>
+        <item name="iconGravity">textStart</item>
+        <item name="iconPadding">0dp</item>
+        <item name="iconTint">@color/material_timepicker_modebutton_tint</item>
+        <item name="rippleColor">@color/mtrl_on_surface_ripple_color</item>
+        <item name="shapeAppearance">@style/Widget.MaterialComponents.TimePicker.ImageButton.ShapeAppearance</item>
+    </style>
+    <style name="Widget.MaterialComponents.TimePicker.ImageButton.ShapeAppearance" parent="">
+        <item name="cornerSize">50%</item>
+        <item name="cornerFamily">rounded</item>
+    </style>
+    <style name="Widget.MaterialComponents.Toolbar" parent="Widget.AppCompat.Toolbar">
+        <item name="titleTextAppearance">?attr/textAppearanceHeadline6</item>
+        <item name="titleTextColor">?android:attr/textColorPrimary</item>
+        <item name="subtitleTextAppearance">?attr/textAppearanceSubtitle1</item>
+        <item name="subtitleTextColor">?android:attr/textColorSecondary</item>
+        <!-- Overrides minimum height in landscape to avoid headline6 and subtitle1 height concerns. -->
+        <item name="android:minHeight">@dimen/mtrl_toolbar_default_height</item>
+        <item name="maxButtonHeight">@dimen/mtrl_toolbar_default_height</item>
+    </style>
+    <style name="Widget.MaterialComponents.Toolbar.Primary">
+        <item name="android:elevation" ns1:ignore="NewApi">@dimen/design_appbar_elevation</item>
+        <item name="android:background">?attr/colorPrimary</item>
+        <item name="titleTextColor">?attr/colorOnPrimary</item>
+        <item name="subtitleTextColor">@color/material_on_primary_emphasis_medium</item>
+        <!-- Note: this theme overlay will only work if the style is applied directly to a Toolbar. -->
+        <item name="android:theme">@style/ThemeOverlay.MaterialComponents.Toolbar.Primary</item>
+        <item name="popupTheme">@style/ThemeOverlay.MaterialComponents.Toolbar.Popup.Primary</item>
+    </style>
+    <style name="Widget.MaterialComponents.Toolbar.PrimarySurface" parent="Widget.MaterialComponents.Toolbar.Primary"/>
+    <style name="Widget.MaterialComponents.Toolbar.Surface">
+        <item name="android:background">?attr/colorSurface</item>
+        <item name="titleTextColor">@color/material_on_surface_emphasis_high_type</item>
+        <item name="subtitleTextColor">@color/material_on_surface_emphasis_medium</item>
+        <!-- Note: this theme overlay will only work if the style is applied directly to a Toolbar. -->
+        <item name="android:theme">@style/ThemeOverlay.MaterialComponents.Toolbar.Surface</item>
+    </style>
+    <style name="Widget.MaterialComponents.Tooltip" parent="android:Widget">
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:minWidth">@dimen/mtrl_tooltip_minWidth</item>
+        <item name="android:minHeight">@dimen/mtrl_tooltip_minHeight</item>
+        <item name="android:padding">@dimen/mtrl_tooltip_padding</item>
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Tooltip</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.MaterialComponents.Tooltip</item>
+    </style>
+
 </resources>
