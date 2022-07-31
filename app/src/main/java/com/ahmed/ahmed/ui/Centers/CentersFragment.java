@@ -1,4 +1,4 @@
-package com.ahmed.ahmed.ui.gallery;
+package com.ahmed.ahmed.ui.Centers;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,22 +10,22 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.ahmed.ahmed.databinding.FragmentGalleryBinding;
+import com.ahmed.ahmed.databinding.FragmentCentersBinding;
 
-public class GalleryFragment extends Fragment {
+public class CentersFragment extends Fragment {
 
-    private FragmentGalleryBinding binding;
+    private FragmentCentersBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        GalleryViewModel galleryViewModel =
-                new ViewModelProvider(this, (ViewModelProvider.Factory) new ViewModelProvider.NewInstanceFactory()).get(GalleryViewModel.class);
+        CentersViewModel centersViewModel =
+                new ViewModelProvider(this).get(CentersViewModel.class);
 
-        binding = FragmentGalleryBinding.inflate(inflater, container, false);
+        binding = FragmentCentersBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textGallery;
-        galleryViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        centersViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 

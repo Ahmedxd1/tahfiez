@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.login.verfiyPhoneActivity">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_40sdp"
+        android:gravity="start"
+        android:layout_marginRight="@dimen/_15sdp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_enter_the_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:fontFamily="@font/el_messiri_medium"
+            android:text="@string/enter_the_code"
+            android:textColor="@color/main_text_color"
+            android:textSize="@dimen/_26ssp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_bio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/el_messiri_medium"
+            android:text="@string/enter_several_digit"
+            android:textColor="@color/second_text_color"
+            android:textSize="@dimen/_14ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <EditText
+            android:id="@+id/verify_phone_code_et"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_weight="1"
+            android:background="@drawable/verify_et_number_background"
+            android:fontFamily="@font/el_messiri_medium"
+            android:hint="@string/enter_the_code"
+            android:inputType="number"
+            android:padding="@dimen/_7sdp"
+            android:textColor="@color/main_text_color"
+            android:textSize="@dimen/_14ssp"
+            tools:ignore="InefficientWeight,TextFields"
+            android:autofillHints="" />
+
+        <TextView
+            android:id="@+id/verify_phone_tv_didnt_receve"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:fontFamily="@font/el_messiri_medium"
+            android:text="@string/ididnotReciveAnyCode"
+            android:textSize="@dimen/_14ssp" />
+
+        <TextView
+            android:id="@+id/verify_phone_resend_code_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:fontFamily="@font/el_messiri_medium"
+            android:text="@string/resend"
+            android:textColor="@color/primary_color"
+            android:textSize="@dimen/_16ssp" />
+
+        <Button
+            android:id="@+id/verify_phone_keep_going_btn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:background="@drawable/button_background"
+            android:fontFamily="@font/el_messiri_medium"
+            android:hint="@string/keepGoing"
+            android:textColorHint="@color/white"
+            android:textSize="@dimen/_16ssp"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout_code" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout_code"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout_code"
+         />
+</androidx.constraintlayout.widget.ConstraintLayout>

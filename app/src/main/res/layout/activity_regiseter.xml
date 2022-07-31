@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    tools:context=".RegiseterActivity">
+    tools:context=".ui.register.RegiseterActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ConstraintLayout"
@@ -75,13 +75,40 @@
                     android:textSize="@dimen/_14ssp" />
             </com.google.android.material.textfield.TextInputLayout>
 
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/register_activity_email_et_layout"
+                app:errorTextColor="@color/error_color"
+                app:boxStrokeErrorColor="@color/error_color"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/email"
+                app:boxBackgroundColor="@color/et_background_color"
+                app:boxCornerRadiusBottomEnd="@dimen/textInputLayout_radius"
+                android:layout_marginTop="@dimen/_15sdp"
+                app:boxCornerRadiusBottomStart="@dimen/textInputLayout_radius"
+                app:boxCornerRadiusTopEnd="@dimen/textInputLayout_radius"
+                app:boxCornerRadiusTopStart="@dimen/textInputLayout_radius"
+                app:boxStrokeColor="@color/text_input_layout_stroke_color"
+
+                app:hintTextColor="@color/et_hint_color">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/register_activity_email_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:fontFamily="@font/el_messiri_medium"
+                    android:inputType="textEmailAddress"
+                    android:padding="@dimen/_10sdp"
+                    android:textSize="@dimen/_14ssp" />
+            </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/register_activity_password_et_layout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_15sdp"
-                android:layout_marginBottom="@dimen/_5sdp"
                 app:boxBackgroundColor="@color/et_background_color"
                 app:boxCornerRadiusBottomEnd="@dimen/textInputLayout_radius"
                 app:boxCornerRadiusBottomStart="@dimen/textInputLayout_radius"
@@ -103,38 +130,6 @@
                     android:layout_height="@dimen/_50sdp"
                     android:fontFamily="@font/el_messiri_medium"
                     android:hint="@string/password"
-                    android:inputType="textPassword"
-
-                    android:textSize="@dimen/_14ssp" />
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/register_activity_cofPassword_et_layout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:layout_marginBottom="@dimen/_5sdp"
-                app:boxBackgroundColor="@color/et_background_color"
-                app:boxCornerRadiusBottomEnd="@dimen/textInputLayout_radius"
-                app:boxCornerRadiusBottomStart="@dimen/textInputLayout_radius"
-                app:boxCornerRadiusTopEnd="@dimen/textInputLayout_radius"
-                app:boxCornerRadiusTopStart="@dimen/textInputLayout_radius"
-                app:boxStrokeColor="@color/text_input_layout_stroke_color"
-                app:passwordToggleContentDescription="@string/password"
-                app:passwordToggleEnabled="true"
-                app:passwordToggleTintMode="src_in"
-                app:errorTextColor="@color/error_color"
-                app:errorIconDrawable="@null"
-                app:boxStrokeErrorColor="@color/error_color"
-                app:hintTextColor="@color/et_hint_color"
-                >
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/register_activity_cofPassword_et"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_50sdp"
-                    android:fontFamily="@font/el_messiri_medium"
-                    android:hint="@string/confirm_password"
                     android:inputType="textPassword"
 
                     android:textSize="@dimen/_14ssp" />
@@ -197,9 +192,19 @@
                 android:textColor="@color/second_text_color"
                 android:textSize="@dimen/_14ssp" />
 
-
         </LinearLayout>
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-40dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/create_account_liner"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

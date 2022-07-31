@@ -1,7 +1,7 @@
 <resources>
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyD9BbROSjwBWy75ae6sdpLdCP-DRlpS9h0</string>
 
-    <string name="app_name">quranAppTahfiez</string>
+    <string name="app_name">AppTahfiez</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -21,7 +21,7 @@
     <string name="new_user">مستخدم جديد؟</string>
     <string name="register_now">سجل الآن</string>
     <string name="user_name">أسم المستخدم</string>
-    <string name="email">البريد الألكتروني</string>
+    <string name="email">البريد الإلكتروني</string>
     <string name="phone">رقم المحمول</string>
     <string name="birthdate">تاريخ الميلاد</string>
     <string name="city">الفرع</string>
@@ -207,10 +207,10 @@
     <string name="required">هذا الحقل مطلوب</string>
     <string name="msg_phone_number_start_with">\"phone number should start 059\"</string>
     <string name="msg_week_passwrod">كلمة المرور ضعيفة</string>
-    <string name="msg_write_cnf_correctly">اكتب تأكيد كلمة المرور بشكل صحيح</string>
+    <string name="msg_write_cnf_correctly">اكتب البريد الالكتروني بشكل صحيح</string>
     <string name="enter_the_code">أدخل الكود</string>
-    <string name="enter_several_digit">Enter the several-digit code we sent to your \nphone to confirm your number</string>
-    <string name="ididnotReciveAnyCode">I didn\'t recive any code</string>
+    <string name="enter_several_digit">أدخل الرمز المكون من عدة أرقام الذي أرسلناه إلى الهاتف الخاص بك لتأكيد رقمك</string>
+    <string name="ididnotReciveAnyCode">لم أتلق أي رمز</string>
     <string name="resend">إعادة إرسال</string>
     <string name="chats">Chats</string>
     <string name="keepGoing">إستمر</string>

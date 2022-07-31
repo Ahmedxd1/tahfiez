@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/nav_home">
-
     <fragment
         android:id="@+id/nav_home"
         android:name="com.ahmed.ahmed.ui.home.HomeFragment"
@@ -12,14 +11,25 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.ahmed.ahmed.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_centers"
+        android:name="com.ahmed.ahmed.ui.Centers.CentersFragment"
+        android:label="@string/menu_centers"
+        tools:layout="@layout/fragment_centers" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.ahmed.ahmed.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_alldata"
+        android:name="com.ahmed.ahmed.ui.AllData.AllDataFragment"
+        android:label="@string/menu_alldata"
+        tools:layout="@layout/fragment_alldata" />
+    <fragment
+        android:id="@+id/nav_messages"
+        android:name="com.ahmed.ahmed.ui.Messages.MessagesFragment"
+        android:label="@string/menu_messages"
+        tools:layout="@layout/fragment_messages" />
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.ahmed.ahmed.ui.Settings.SettingsFragment"
+        android:label="@string/menu_settings"
+        tools:layout="@layout/fragment_settings" />
+
 </navigation>
