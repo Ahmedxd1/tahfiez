@@ -1,6 +1,8 @@
 package com.ahmed.ahmed.ui.register;
 
+import android.app.Application;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -32,6 +34,7 @@ import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -43,13 +46,8 @@ public class RegiseterActivity extends AppCompatActivity {
     ActivityRegiseterBinding binding;
     private FirebaseAuth mAuth;
     private  FirebaseFirestore fireStore;
-    private String userPhoneNumber;
     private static String uuid;
-    String verificationId;
-    PhoneAuthCredential credential;
     Boolean verificationOnProgress = false;
-    PhoneAuthProvider.ForceResendingToken token;
-
 
 
 
@@ -90,40 +88,10 @@ public class RegiseterActivity extends AppCompatActivity {
 
                     Intent intent=new Intent(RegiseterActivity.this, verfiyPhoneActivity.class);
                     intent.putExtra("phoneNo",phone);
+                    intent.putExtra("name",name);
+                    intent.putExtra("password",password);
+                    intent.putExtra("email",email);
                     startActivity(intent);
-                    finish();
-//
-//                mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<AuthResult> task) {
-//                        if (task.isSuccessful()){
-//                            uuid=mAuth.getCurrentUser().getUid();
-//
-//                            DocumentReference documentReference= fireStore.collection("users").document(uuid);
-//                            Map<String,Object> user =new HashMap<>();
-//                            user.put("FullName",name);
-//                            user.put("Phone",phone);
-//                            user.put("Email",email);
-//                            user.put("Password",password);
-//                            documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-//                                @Override
-//                                public void onSuccess(Void unused) {
-//                                    Log.d("TAG", "onSuccess: create user ");
-//                                }
-//                            }).addOnFailureListener(new OnFailureListener() {
-//                                @Override
-//                                public void onFailure(@NonNull Exception e) {
-//                                    Log.d("TAG", "onFailure: Failed to Create User " + e.getMessage());
-//                                }
-//                            });
-//
-//                            Toast.makeText(RegiseterActivity.this, "User Registered", Toast.LENGTH_SHORT).show();
-//
-//                        }
-//                    }
-//                });
-
-
 
             }}
         });
@@ -205,37 +173,10 @@ public class RegiseterActivity extends AppCompatActivity {
     }
 
 
-//       in splash screen
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if(mAuth.getCurrentUser() != null){
-          showProgress();
-          checkUserProfile();
-        }
-    }
-//       in splash screen
-    private void checkUserProfile() {
-        DocumentReference docRef = fireStore.collection("users").document(mAuth.getCurrentUser().getUid());
-        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                if(documentSnapshot.exists()){
-                    startActivity(new Intent(getApplicationContext(),NavMainActivity.class));
-                    finish();
-                }else {
-                    //Toast.makeText(Register.this, "Profile Do not Exists.", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-                    finish();
-                }
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(RegiseterActivity.this, "Profile Do Not Exists", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
+
+
+
+
 
 
 }
