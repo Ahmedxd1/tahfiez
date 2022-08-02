@@ -24,8 +24,7 @@ public class CentersFragment extends Fragment {
         binding = FragmentCentersBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textGallery;
-        centersViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+
         return root;
     }
 

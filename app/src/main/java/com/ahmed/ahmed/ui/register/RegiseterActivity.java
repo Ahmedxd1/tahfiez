@@ -1,54 +1,54 @@
 package com.ahmed.ahmed.ui.register;
 
-import android.app.Application;
+
+import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.provider.Settings;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.MutableLiveData;
 
-import com.ahmed.ahmed.MainActivity;
-import com.ahmed.ahmed.NavMainActivity;
 import com.ahmed.ahmed.R;
-import com.ahmed.ahmed.constants.Constants;
 import com.ahmed.ahmed.databinding.ActivityRegiseterBinding;
-import com.ahmed.ahmed.model.User;
-import com.ahmed.ahmed.ui.login.LoginActivity;
-import com.ahmed.ahmed.ui.login.verfiyPhoneActivity;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseException;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.PhoneAuthCredential;
-import com.google.firebase.auth.PhoneAuthProvider;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.gson.Gson;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-import java.util.concurrent.TimeUnit;
 
 public class RegiseterActivity extends AppCompatActivity {
     ActivityRegiseterBinding binding;
     private FirebaseAuth mAuth;
     private  FirebaseFirestore fireStore;
+    private FirebaseStorage storage;
+    StorageReference storageReference;
     private static String uuid;
     Boolean verificationOnProgress = false;
-
+    String profileImagePath;
+//    private Uri filePath;
+        String photoPath ;
 
 
 
@@ -58,9 +58,44 @@ public class RegiseterActivity extends AppCompatActivity {
         binding=ActivityRegiseterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         fireStore = FirebaseFirestore.getInstance();
+
         mAuth = FirebaseAuth.getInstance();
+        storage = FirebaseStorage.getInstance();
+         storageReference = storage.getReference();
 
 
+
+        ActivityResultLauncher<String> arl = registerForActivityResult(
+                new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
+                    @Override
+                    public void onActivityResult(Uri result) {
+                        if (result != null){
+                            binding.profileImage.setImageURI(result);
+                            profileImagePath = getPhotoPath(result);
+                        }
+                    }
+                });
+
+        ActivityResultLauncher<String[]> launcher = registerForActivityResult(
+                new ActivityResultContracts.RequestMultiplePermissions(), new ActivityResultCallback<Map<String, Boolean>>() {
+                    @Override
+                    public void onActivityResult(Map<String, Boolean> result) {
+                        if (Boolean.TRUE.equals(result.get(Manifest.permission.READ_EXTERNAL_STORAGE)) &&
+                                Boolean.TRUE.equals(result.get(Manifest.permission.WRITE_EXTERNAL_STORAGE))){
+                            arl.launch("image/*");
+                        }
+                    }
+                }
+        );
+
+
+        binding.profileImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launcher.launch(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE ,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE});
+            }
+        });
         binding.registerActivityLoginTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,6 +113,7 @@ public class RegiseterActivity extends AppCompatActivity {
                 String phone = binding.registerActivityPhoneNumberEt.getText().toString();
                 String password = binding.registerActivityPasswordEt.getText().toString();
                 String email = binding.registerActivityEmailEt.getText().toString();
+                String filePath = photoPath;
 
 
                 if (isPhoneNumberAndPasswordValid(name,phone, password,email)) {
@@ -91,6 +127,8 @@ public class RegiseterActivity extends AppCompatActivity {
                     intent.putExtra("name",name);
                     intent.putExtra("password",password);
                     intent.putExtra("email",email);
+                    intent.putExtra("image", filePath);
+
                     startActivity(intent);
 
             }}
@@ -128,7 +166,7 @@ public class RegiseterActivity extends AppCompatActivity {
 
 
     public boolean isPhoneNumberAndPasswordValid(String fullName,String phoneNumber, String password, String email) {
-        ArrayList<Boolean> isValid=new ArrayList<>();
+        ArrayList<Boolean> isValid = new ArrayList<>();
 
 
         if (!phoneNumber.startsWith("059")) {
@@ -146,37 +184,64 @@ public class RegiseterActivity extends AppCompatActivity {
             binding.registerActivityEmailEtLayout.setError(getString(R.string.msg_write_cnf_correctly));
             isValid.add(false);
         }
-        if(TextUtils.isEmpty(fullName)){
+        if (TextUtils.isEmpty(fullName)) {
             binding.registerActivityFullNameEtLayout.setError(getString(R.string.required));
             isValid.add(false);
         }
 
-        if (TextUtils.isEmpty(phoneNumber) ) {
+        if (TextUtils.isEmpty(phoneNumber)) {
             binding.registerActivityPhoneNumberEtLayout.setError(getString(R.string.required));
             isValid.add(false);
 
         }
-        if (TextUtils.isEmpty(password)){
+        if (TextUtils.isEmpty(password)) {
             binding.registerActivityPasswordEtLayout.setError(getString(R.string.required));
             isValid.add(false);
 
         }
-        if (TextUtils.isEmpty(email)){
+        if (TextUtils.isEmpty(email)) {
             binding.registerActivityEmailEtLayout.setError(getString(R.string.required));
             isValid.add(false);
 
         }
 
         return !isValid.contains(false);
-
-
     }
+        private String getPhotoPath(Uri imageUri){
 
 
+            Bitmap bitmap = null;
+            String android_id = Settings.Secure.getString(getBaseContext().getContentResolver(),
+                    Settings.Secure.ANDROID_ID);
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(getBaseContext().getContentResolver(), imageUri);
+                File dir = getBaseContext().getExternalFilesDir(Environment.DIRECTORY_DCIM);
+                File myFile = new File(dir.getPath()+"/Tahfiez" + android_id +".png");
 
+                FileOutputStream fileOutputStream = new FileOutputStream(myFile);
 
+                bitmap.compress(Bitmap.CompressFormat.PNG,
+                        100, fileOutputStream);
 
+                fileOutputStream.flush();
+                fileOutputStream.close();
+
+                photoPath = myFile.getPath();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return photoPath;
+
+        }
 
 
 
 }
+
+
+
+
+
+

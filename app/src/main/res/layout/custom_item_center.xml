@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/_5sdp"
+    app:cardElevation="@dimen/_7sdp"
+    app:cardUseCompatPadding="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/center_image"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:background="@drawable/img_shape"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/gallary" />
+
+        <ImageButton
+            android:id="@+id/center_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:background="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/center_settings"
+            app:srcCompat="@drawable/ic_location"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <ImageView
+            android:id="@+id/center_settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/center_name"
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="gone"
+            app:srcCompat="@drawable/settings" />
+
+        <TextView
+            android:id="@+id/center_name"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMaxTextSize="@dimen/_13ssp"
+            android:gravity="center_vertical"
+            android:fontFamily="@font/el_messiri_medium"
+            android:text="@string/center"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toStartOf="@+id/center_location"
+            app:layout_constraintStart_toEndOf="@+id/center_image"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/center_address"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMaxTextSize="@dimen/_13ssp"
+            android:gravity="center_vertical"
+            android:fontFamily="@font/el_messiri_medium"
+            android:text="@string/address"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toStartOf="@+id/center_location"
+            app:layout_constraintHorizontal_bias="0.437"
+            app:layout_constraintStart_toEndOf="@+id/center_image"
+            app:layout_constraintTop_toBottomOf="@+id/center_name" />
+
+        <TextView
+            android:id="@+id/center_city"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMaxTextSize="@dimen/_13ssp"
+            android:gravity="center_vertical"
+            android:fontFamily="@font/el_messiri_medium"
+            android:text="@string/city"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="@+id/center_address"
+            app:layout_constraintStart_toEndOf="@+id/center_image"
+            app:layout_constraintTop_toBottomOf="@+id/center_address" />
+
+        <TextView
+            android:id="@+id/cycle_activity"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:autoSizeTextType="uniform"
+            android:background="@color/white"
+            android:drawableEnd="@drawable/ic_arrow"
+            android:fontFamily="@font/el_messiri_medium"
+            android:gravity="center_vertical"
+            android:text="@string/cycle_activity"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/center_city" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

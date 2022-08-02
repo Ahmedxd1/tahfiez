@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
 android {
@@ -52,6 +53,7 @@ dependencies {
     implementation 'com.android.support:design:28.0.0'
     implementation 'com.google.firebase:firebase-firestore:24.2.1'
     implementation 'com.google.firebase:firebase-storage:20.0.1'
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
 
     testImplementation 'junit:junit:4.13.2'
     //noinspection GradleCompatible
@@ -68,7 +70,8 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.annotation:annotation:1.4.0'
     implementation "androidx.browser:browser:1.4.0"
-
+    implementation 'com.wdullaer:materialdatetimepicker:4.2.3'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'androidx.core:core-splashscreen:1.0.0'
 
 

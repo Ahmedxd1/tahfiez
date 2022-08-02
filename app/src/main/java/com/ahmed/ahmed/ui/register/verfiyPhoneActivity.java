@@ -1,21 +1,25 @@
-package com.ahmed.ahmed.ui.login;
+package com.ahmed.ahmed.ui.register;
+
+import static com.google.common.io.Files.getFileExtension;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.Toast;
 
+import com.ahmed.ahmed.MainActivity;
 import com.ahmed.ahmed.NavMainActivity;
-import com.ahmed.ahmed.R;
 import com.ahmed.ahmed.databinding.ActivityVerfiyPhoneBinding;
-import com.ahmed.ahmed.ui.register.RegiseterActivity;
+import com.ahmed.ahmed.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -30,14 +34,23 @@ import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 public class verfiyPhoneActivity extends AppCompatActivity {
     ActivityVerfiyPhoneBinding binding;
-    String phonenumber,nameIntent,passwordIntent,emailIntent;
+    String phonenumber;
+    String nameIntent;
+    String passwordIntent;
+    String emailIntent;
+    String imageIntent;
     private static String vrf_id;
     private FirebaseAuth mAuth;
     private PhoneAuthProvider.ForceResendingToken forceResending;
@@ -45,7 +58,9 @@ public class verfiyPhoneActivity extends AppCompatActivity {
     public static String VERIFY_ACTIVITY="VERIFY_ACTIVITY";
     private FirebaseFirestore fireStore;
     private static String uuid;
-
+    private FirebaseStorage storage;
+    StorageReference storageReference;
+    String  photoUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +69,9 @@ public class verfiyPhoneActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         mAuth = FirebaseAuth.getInstance();
         fireStore = FirebaseFirestore.getInstance();
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
+
 
         Intent intent=getIntent();
 
@@ -62,10 +80,12 @@ public class verfiyPhoneActivity extends AppCompatActivity {
             nameIntent=intent.getStringExtra("name");
             emailIntent=intent.getStringExtra("email");
             passwordIntent=intent.getStringExtra("password");
+            imageIntent=intent.getStringExtra("image");
             Log.d("TAG", "onCreate: "+phonenumber);
             Log.d("TAG", "onCreate: "+nameIntent);
             Log.d("TAG", "onCreate: "+emailIntent);
             Log.d("TAG", "onCreate: "+passwordIntent);
+            Log.d("TAG", "onCreate: "+imageIntent);
             activityState=intent.getIntExtra(VERIFY_ACTIVITY,1);
         }
 
@@ -97,35 +117,7 @@ public class verfiyPhoneActivity extends AppCompatActivity {
                         }
                     }
 
-//                    mAuth.createUserWithEmailAndPassword(emailIntent,passwordIntent).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-//                        @Override
-//                        public void onComplete(@NonNull Task<AuthResult> task) {
-//                            if (task.isSuccessful()){
-//                    uuid = mAuth.getCurrentUser().getUid();
-//
-//                    DocumentReference documentReference = fireStore.collection("users").document(uuid);
-//                    Map<String, Object> user = new HashMap<>();
-//                    user.put("fullName", nameIntent);
-//                    user.put("phoneNumber", phonenumber);
-//                    user.put("email", emailIntent);
-//                    user.put("password", passwordIntent);
-//                    documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-//                        @Override
-//                        public void onSuccess(Void unused) {
-//                            Log.d("TAG", "onSuccess: create user ");
-//                        }
-//                    }).addOnFailureListener(new OnFailureListener() {
-//                        @Override
-//                        public void onFailure(@NonNull Exception e) {
-//                            Log.d("TAG", "onFailure: Failed to Create User " + e.getMessage());
-//                        }
-//                    });
-//
-//                    Toast.makeText(verfiyPhoneActivity.this, "User Registered", Toast.LENGTH_SHORT).show();
 
-//                            }
-//                        }
-//                    });
 
                 } else {
                     Toast.makeText(verfiyPhoneActivity.this, "Enter the code or verify Phone Number", Toast.LENGTH_SHORT).show();
@@ -248,7 +240,70 @@ public class verfiyPhoneActivity extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(Void unused) {
                                     Log.d("TAG", "onSuccess: create user ");
+
+                                    if (imageIntent != null) {
+                                        // Code for showing progressDialog while uploading
+                                        ProgressDialog progressDialog = new ProgressDialog(verfiyPhoneActivity.this);
+                                        progressDialog.setTitle("Uploading...");
+                                        progressDialog.show();
+
+                                        // Defining the child of storageReference
+                                        StorageReference storageReference= FirebaseStorage.getInstance().getReference().child(System.currentTimeMillis()+"."+getFileExtension(Uri.parse(imageIntent)));
+//الطريقة الاولى
+                                        storageReference.putFile(Uri.parse(imageIntent)).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                                                if (task.isSuccessful()){
+                                                    photoUrl=task.getResult().getStorage().toString();
+                                                    Toast.makeText(verfiyPhoneActivity.this, "تم رفع الصورة  ", Toast.LENGTH_SHORT).show();
+                                                    uplaodeOnFireStor();
+
+                                                }
+
+                                            }
+                                        });
+                                        storageReference.putFile(Uri.parse(imageIntent))
+                                                .addOnSuccessListener(
+                                                        new OnSuccessListener<UploadTask.TaskSnapshot>() {
+
+                                                            @Override
+                                                            public void onSuccess(
+                                                                    UploadTask.TaskSnapshot taskSnapshot)
+                                                            {
+                                                                progressDialog.dismiss();
+                                                                Toast.makeText(verfiyPhoneActivity.this, "Image Uploaded!!", Toast.LENGTH_SHORT)
+                                                                        .show();
+                                                            }
+                                                        })
+
+                                                .addOnFailureListener(new OnFailureListener() {
+                                                    @Override
+                                                    public void onFailure(@NonNull Exception e)
+                                                    {
+
+                                                        progressDialog.dismiss();
+                                                        Toast.makeText(verfiyPhoneActivity.this, "Failed " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                        Log.e("ahmed", "onFailure: "+e.getMessage());
+                                                    }
+                                                })
+                                                .addOnProgressListener(
+                                                        new OnProgressListener<UploadTask.TaskSnapshot>() {
+
+                                                            // Progress Listener for loading
+                                                            // percentage on the dialog box
+                                                            @Override
+                                                            public void onProgress(
+                                                                    UploadTask.TaskSnapshot taskSnapshot)
+                                                            {
+                                                                double progress = (100.0 * taskSnapshot.getBytesTransferred()
+                                                                        / taskSnapshot.getTotalByteCount());
+                                                                progressDialog.setMessage("Uploaded " + (int)progress + "%");
+                                                            }
+                                                        });
+                                    }
                                 }
+
+
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
@@ -286,6 +341,36 @@ public class verfiyPhoneActivity extends AppCompatActivity {
     }
 
 
+    public void uplaodeOnFireStor() {
+        User users = new User();
+        DocumentReference documentReference = FirebaseFirestore.getInstance().collection("users").document();
+        users.setId(documentReference.getId());
+        if (imageIntent != null) {
+            users.setImage(imageIntent.toString());
+        } else {
+
+            documentReference.set(users).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(verfiyPhoneActivity.this, "تم انشاء مستخدم جديد ", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getBaseContext(), NavMainActivity.class);
+                        startActivity(intent);
+
+                    }
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+
+                }
+            });
+        }
+    }
+
+
+
+
     public void sendPhoneNumberVerification(String phoneNumber) {
         PhoneAuthOptions options =
                 PhoneAuthOptions.newBuilder(mAuth)
@@ -317,8 +402,11 @@ public class verfiyPhoneActivity extends AppCompatActivity {
                         .build();
         PhoneAuthProvider.verifyPhoneNumber(options);
     }
+    private  String getFileExtension(Uri imageUri){
+        return MimeTypeMap.getSingleton().getExtensionFromMimeType(getContentResolver().getType(imageUri));
+    }
 
-
+//    private void uploadImage() {}
 
 
 }

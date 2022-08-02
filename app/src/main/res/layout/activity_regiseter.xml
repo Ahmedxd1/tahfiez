@@ -12,20 +12,31 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
+            android:layout_width="@dimen/_90sdp"
+            android:layout_height="@dimen/_90sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:src="@drawable/add_image"
+            app:civ_border_color="#FF000000"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_login1" />
+
 
         <LinearLayout
             android:id="@+id/linearLayout4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_15sdp"
-            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_15sdp"
             android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@+id/text_login1"
+            app:layout_constraintTop_toBottomOf="@+id/profile_image"
             tools:layout_editor_absoluteX="19dp">
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/register_activity_fullName_et_layout"
-                app:errorTextColor="@color/error_color"
-                app:boxStrokeErrorColor="@color/error_color"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -36,6 +47,8 @@
                 app:boxCornerRadiusTopEnd="@dimen/textInputLayout_radius"
                 app:boxCornerRadiusTopStart="@dimen/textInputLayout_radius"
                 app:boxStrokeColor="@color/text_input_layout_stroke_color"
+                app:boxStrokeErrorColor="@color/error_color"
+                app:errorTextColor="@color/error_color"
 
                 app:hintTextColor="@color/et_hint_color">
 
@@ -48,10 +61,9 @@
                     android:padding="@dimen/_10sdp"
                     android:textSize="@dimen/_14ssp" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/register_activity_phoneNumber_et_layout"
-                app:errorTextColor="@color/error_color"
-                app:boxStrokeErrorColor="@color/error_color"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -63,6 +75,8 @@
                 app:boxCornerRadiusTopEnd="@dimen/textInputLayout_radius"
                 app:boxCornerRadiusTopStart="@dimen/textInputLayout_radius"
                 app:boxStrokeColor="@color/text_input_layout_stroke_color"
+                app:boxStrokeErrorColor="@color/error_color"
+                app:errorTextColor="@color/error_color"
 
                 app:hintTextColor="@color/et_hint_color">
 
@@ -78,19 +92,19 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/register_activity_email_et_layout"
-                app:errorTextColor="@color/error_color"
-                app:boxStrokeErrorColor="@color/error_color"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
                 android:hint="@string/email"
                 app:boxBackgroundColor="@color/et_background_color"
                 app:boxCornerRadiusBottomEnd="@dimen/textInputLayout_radius"
-                android:layout_marginTop="@dimen/_15sdp"
                 app:boxCornerRadiusBottomStart="@dimen/textInputLayout_radius"
                 app:boxCornerRadiusTopEnd="@dimen/textInputLayout_radius"
                 app:boxCornerRadiusTopStart="@dimen/textInputLayout_radius"
                 app:boxStrokeColor="@color/text_input_layout_stroke_color"
+                app:boxStrokeErrorColor="@color/error_color"
+                app:errorTextColor="@color/error_color"
 
                 app:hintTextColor="@color/et_hint_color">
 
@@ -103,6 +117,7 @@
                     android:padding="@dimen/_10sdp"
                     android:textSize="@dimen/_14ssp" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/register_activity_password_et_layout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -115,14 +130,13 @@
                 app:boxCornerRadiusTopEnd="@dimen/textInputLayout_radius"
                 app:boxCornerRadiusTopStart="@dimen/textInputLayout_radius"
                 app:boxStrokeColor="@color/text_input_layout_stroke_color"
+                app:boxStrokeErrorColor="@color/error_color"
+                app:errorIconDrawable="@null"
+                app:errorTextColor="@color/error_color"
+                app:hintTextColor="@color/et_hint_color"
                 app:passwordToggleContentDescription="@string/password"
                 app:passwordToggleEnabled="true"
-                app:errorTextColor="@color/error_color"
-                app:errorIconDrawable="@null"
-                app:boxStrokeErrorColor="@color/error_color"
-                app:passwordToggleTintMode="src_in"
-                app:hintTextColor="@color/et_hint_color"
-                >
+                app:passwordToggleTintMode="src_in">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/register_activity_password_et"
