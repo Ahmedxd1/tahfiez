@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseFirestore fireStore;
     String phonenumber;
     private PhoneAuthProvider.ForceResendingToken forceResending;
-    private static String uuid;
+    private static int uuid;
     public static String USERS_COLLECTION="users";
     public static String CURRENT_USER="currentUser";
 
@@ -180,7 +180,6 @@ public class LoginActivity extends AppCompatActivity {
                             enableLoginButton(true);
 
                         }
-
 
                     } else {
                         Toast.makeText(LoginActivity.this, "المستخدم غير موجود", Toast.LENGTH_SHORT).show();

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 
     public class User implements Serializable {
-        private String id;
+        private int id;
         private String phoneNumber;
         private String fullName;
         private String email;
@@ -13,8 +13,9 @@ import java.io.Serializable;
         private String password;
         private String address;
         private String desc;
+        private String UserType;
 
-        public User(String id, String phoneNumber, String fullName, String email, boolean isPhoneNumberVerified, String image, String password) {
+        public User(int id, String phoneNumber, String fullName, String email, boolean isPhoneNumberVerified, String image, String password) {
             this.id = id;
             this.phoneNumber = phoneNumber;
             this.fullName = fullName;
@@ -24,24 +25,66 @@ import java.io.Serializable;
             this.password = password;
         }
 
-        public User(String id, String phoneNumber, String password) {
+        public User(int id, String fullName, String image, String password, String address, String desc, String userType) {
+            this.id = id;
+            this.fullName = fullName;
+            this.image = image;
+            this.password = password;
+            this.address = address;
+            this.desc = desc;
+            UserType = userType;
+        }
+
+        public boolean isPhoneNumberVerified() {
+            return isPhoneNumberVerified;
+        }
+
+        public void setPhoneNumberVerified(boolean phoneNumberVerified) {
+            isPhoneNumberVerified = phoneNumberVerified;
+        }
+
+        public String getAddress() {
+            return address;
+        }
+
+        public void setAddress(String address) {
+            this.address = address;
+        }
+
+        public String getDesc() {
+            return desc;
+        }
+
+        public void setDesc(String desc) {
+            this.desc = desc;
+        }
+
+        public String getUserType() {
+            return UserType;
+        }
+
+        public void setUserType(String userType) {
+            UserType = userType;
+        }
+
+        public User(int id, String phoneNumber, String password) {
             this.id = id;
             this.phoneNumber = phoneNumber;
             this.password = password;
         }
 
-        public User(String id, String phoneNumber, String fullName, String password) {
+        public User(int id, String phoneNumber, String fullName, String password) {
             this.id = id;
             this.phoneNumber = phoneNumber;
             this.fullName = fullName;
             this.password = password;
         }
 
-        public String getId() {
+        public int getId() {
             return id;
         }
 
-        public void setId(String id) {
+        public void setId(int id) {
             this.id = id;
         }
 

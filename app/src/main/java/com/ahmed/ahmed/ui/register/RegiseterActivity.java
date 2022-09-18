@@ -10,7 +10,9 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.Settings;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Toast;
 
@@ -22,6 +24,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.ahmed.ahmed.R;
 import com.ahmed.ahmed.databinding.ActivityRegiseterBinding;
+import com.ahmed.ahmed.ui.login.LoginActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -47,9 +50,7 @@ public class RegiseterActivity extends AppCompatActivity {
     private static String uuid;
     Boolean verificationOnProgress = false;
     String profileImagePath;
-//    private Uri filePath;
-        String photoPath ;
-
+    int i=0;
 
 
     @Override
@@ -99,9 +100,12 @@ public class RegiseterActivity extends AppCompatActivity {
         binding.registerActivityLoginTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
-                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+//                finish();
+//                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
 
+                Intent intent=new Intent(RegiseterActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
         binding.registerActivitySignupBtn.setOnClickListener(new View.OnClickListener() {
@@ -113,23 +117,24 @@ public class RegiseterActivity extends AppCompatActivity {
                 String phone = binding.registerActivityPhoneNumberEt.getText().toString();
                 String password = binding.registerActivityPasswordEt.getText().toString();
                 String email = binding.registerActivityEmailEt.getText().toString();
-                String filePath = photoPath;
-
+                String image = profileImagePath.toString();
+                String userType = "0";
 
                 if (isPhoneNumberAndPasswordValid(name,phone, password,email)) {
-                    setSaveBtnEnable(false);
                     showProgress();
 
-                }
+
 
                     Intent intent=new Intent(RegiseterActivity.this, verfiyPhoneActivity.class);
                     intent.putExtra("phoneNo",phone);
+                    intent.putExtra("id",uuid);
                     intent.putExtra("name",name);
                     intent.putExtra("password",password);
                     intent.putExtra("email",email);
-                    intent.putExtra("image", filePath);
-
+                    intent.putExtra("image", image);
+                    intent.putExtra("userType", userType);
                     startActivity(intent);
+                }
 
             }}
         });
@@ -168,73 +173,193 @@ public class RegiseterActivity extends AppCompatActivity {
     public boolean isPhoneNumberAndPasswordValid(String fullName,String phoneNumber, String password, String email) {
         ArrayList<Boolean> isValid = new ArrayList<>();
 
-
-        if (!phoneNumber.startsWith("059")) {
+//  بقلي لازم يبدا 059ايش الخطاء
+// هيني هيك خليتو يقبل بس بطلعلي خطا بعد ما عدلت
+        if (!phoneNumber.startsWith("059")||phoneNumber.startsWith("259")) {
             binding.registerActivityPhoneNumberEtLayout.setError(getString(R.string.msg_phone_number_start_with));
             isValid.add(false);
+            setSaveBtnEnable(false);
 
+// استنا دخل على واجهة التحقق
+            //123456 حط دخل
         }
-
         if ((password.length() < 6)) {
 
             binding.registerActivityPasswordEtLayout.setError(getString(R.string.msg_week_passwrod));
             isValid.add(false);
+            setSaveBtnEnable(false);
+
         }
         if (!email.equals(email)) {
             binding.registerActivityEmailEtLayout.setError(getString(R.string.msg_write_cnf_correctly));
             isValid.add(false);
+            setSaveBtnEnable(false);
+
         }
         if (TextUtils.isEmpty(fullName)) {
             binding.registerActivityFullNameEtLayout.setError(getString(R.string.required));
             isValid.add(false);
+            setSaveBtnEnable(false);
+
         }
 
         if (TextUtils.isEmpty(phoneNumber)) {
             binding.registerActivityPhoneNumberEtLayout.setError(getString(R.string.required));
             isValid.add(false);
+            setSaveBtnEnable(false);
 
         }
         if (TextUtils.isEmpty(password)) {
             binding.registerActivityPasswordEtLayout.setError(getString(R.string.required));
             isValid.add(false);
+            setSaveBtnEnable(false);
 
         }
         if (TextUtils.isEmpty(email)) {
             binding.registerActivityEmailEtLayout.setError(getString(R.string.required));
             isValid.add(false);
+            setSaveBtnEnable(false);
 
         }
 
         return !isValid.contains(false);
     }
-        private String getPhotoPath(Uri imageUri){
+    private String getPhotoPath(Uri imageUri){
 
+        String photoPath = null ;
+        Bitmap bitmap = null;
+        String android_id = Settings.Secure.getString(getBaseContext().getContentResolver(),
+                Settings.Secure.ANDROID_ID);
+        try {
+            bitmap = MediaStore.Images.Media.getBitmap(getBaseContext().getContentResolver(), imageUri);
+            File dir = getBaseContext().getExternalFilesDir(Environment.DIRECTORY_DCIM);
+            File myFile = new File(dir.getPath()+"/Tahfiez" + android_id +".png");
 
-            Bitmap bitmap = null;
-            String android_id = Settings.Secure.getString(getBaseContext().getContentResolver(),
-                    Settings.Secure.ANDROID_ID);
-            try {
-                bitmap = MediaStore.Images.Media.getBitmap(getBaseContext().getContentResolver(), imageUri);
-                File dir = getBaseContext().getExternalFilesDir(Environment.DIRECTORY_DCIM);
-                File myFile = new File(dir.getPath()+"/Tahfiez" + android_id +".png");
+            FileOutputStream fileOutputStream = new FileOutputStream(myFile);
 
-                FileOutputStream fileOutputStream = new FileOutputStream(myFile);
+            bitmap.compress(Bitmap.CompressFormat.PNG,
+                    100, fileOutputStream);
 
-                bitmap.compress(Bitmap.CompressFormat.PNG,
-                        100, fileOutputStream);
+            fileOutputStream.flush();
+            fileOutputStream.close();
 
-                fileOutputStream.flush();
-                fileOutputStream.close();
+            photoPath = myFile.getPath();
 
-                photoPath = myFile.getPath();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-            } catch (IOException e) {
-                e.printStackTrace();
+        return photoPath;
+
+    }
+    private void setEtTextChangeListeners() {
+        binding.registerActivityFullNameEt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
             }
 
-            return photoPath;
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                setSaveBtnEnable(true);
 
-        }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (binding.registerActivityFullNameEtLayout.isErrorEnabled()) {
+                    binding.registerActivityFullNameEtLayout.setError(null);
+                }
+            }
+        });
+        binding.registerActivityEmailEt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                setSaveBtnEnable(true);
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (binding.registerActivityEmailEtLayout.isErrorEnabled()) {
+                    binding.registerActivityEmailEtLayout.setError(null);
+                }
+            }
+        });
+
+        binding.registerActivityPasswordEt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                setSaveBtnEnable(true);
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (binding.registerActivityPasswordEtLayout.isErrorEnabled()) {
+                    binding.registerActivityPasswordEtLayout.setError(null);
+                }
+            }
+        });
+
+
+        binding.registerActivityPhoneNumberEt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                setSaveBtnEnable(true);
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (binding.registerActivityPhoneNumberEtLayout.isErrorEnabled()) {
+                    binding.registerActivityPhoneNumberEtLayout.setError(null);
+                }
+            }
+        });
+
+
+
+
+
+        binding.registerActivityEmailEt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (binding.registerActivityEmailEtLayout.isErrorEnabled()) {
+                    binding.registerActivityEmailEtLayout.setError(null);
+                }
+            }
+        });
+
+
+
+    }
+
 
 
 

@@ -72,11 +72,21 @@
     <string name="messages">رسائل الطالب</string>
 
     <string-array name="city_array">
+        <item>المدينة</item>
         <item>غزة</item>
         <item>شمال غزة</item>
         <item>الوسطى</item>
         <item>خانيونس</item>
         <item>رفح</item>
+    </string-array>
+
+    <string-array name="userManger">
+        <item>المدير</item>
+        <item>ahmed</item>
+        <item>mohammed</item>
+        <item>mahmoud</item>
+        <item>adam</item>
+        <item>housam</item>
     </string-array>
 
     <string-array name="taskType_array">

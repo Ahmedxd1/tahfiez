@@ -4,10 +4,13 @@ import static com.ahmed.ahmed.ui.login.LoginActivity.CURRENT_USER;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 
 import androidx.annotation.NonNull;
@@ -20,15 +23,24 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 
 import com.ahmed.ahmed.constants.Constants;
 import com.ahmed.ahmed.databinding.ActivityNavMainBinding;
+import com.ahmed.ahmed.model.User;
 import com.ahmed.ahmed.ui.Settings.SettingsFragment;
 import com.ahmed.ahmed.ui.home.HomeFragment;
 import com.ahmed.ahmed.ui.login.LoginActivity;
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class NavMainActivity extends AppCompatActivity {
 
@@ -56,6 +68,31 @@ public class NavMainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_nav_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+        View header=navigationView.getHeaderView(0);
+        FirebaseFirestore.getInstance().collection("users").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                for (QueryDocumentSnapshot queryDocumentSnapshot:task.getResult()){
+                    User user=  queryDocumentSnapshot.toObject(User.class);
+                    TextView email=header.findViewById(R.id.UserEmail);
+                    TextView name=header.findViewById(R.id.UserName);
+                    ImageView image=header.findViewById(R.id.UserImage);
+                    email.setText(user.getEmail());
+                    name.setText(user.getFullName());
+                    Glide.with(getBaseContext()).load(user.getImage()).into(image);
+
+
+                }
+
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+            }
+        });
+
     }
 
     @Override

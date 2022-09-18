@@ -9,7 +9,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout2"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_200sdp"
+        android:layout_height="@dimen/_170sdp"
         android:fitsSystemWindows="true"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,8 +54,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:clipToPadding="true"
-        app:layout_constraintTop_toBottomOf="@id/appBarLayout2"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintTop_toBottomOf="@id/appBarLayout2">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -67,92 +67,123 @@
                 android:orientation="vertical">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/center_name"
+                    android:id="@+id/add_center_activity_NameCenter_et_layout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_15sdp"
                     android:layout_marginStart="@dimen/_15sdp"
-                    android:theme="@style/TextInputLayoutAppearance"
-                    android:hint="@string/center_name">
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:hint="@string/center_name"
+                    app:boxBackgroundColor="@color/et_background_color"
+                    app:boxCornerRadiusBottomEnd="@dimen/textInputLayout_radius"
+                    app:boxCornerRadiusBottomStart="@dimen/textInputLayout_radius"
+                    app:boxCornerRadiusTopEnd="@dimen/textInputLayout_radius"
+                    app:boxCornerRadiusTopStart="@dimen/textInputLayout_radius"
+                    app:boxStrokeColor="@color/text_input_layout_stroke_color"
+                    app:boxStrokeErrorColor="@color/error_color"
+                    app:errorTextColor="@color/error_color"
+                    app:hintTextColor="@color/et_hint_color">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/et_center_name"
+                        android:id="@+id/add_center_activity_Name_et"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_41sdp"
-                        android:inputType="text"/>
-
+                        android:fontFamily="@font/el_messiri_medium"
+                        android:inputType="text"
+                        android:textSize="@dimen/_11ssp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Spinner
-                    android:id="@+id/city"
+                    android:id="@+id/add_center_activity_section"
+                    style="@style/Widget.AppCompat.Spinner.Underlined"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
-                    android:layout_marginEnd="@dimen/_15sdp"
                     android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
                     android:spinnerMode="dialog"
-                    style="@style/Widget.AppCompat.Spinner.Underlined"
-                    android:theme="@style/ThemeSpinner" />
-
+                     />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:orientation="horizontal">
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/center_address"
+                        android:id="@+id/add_center_activity_CenterAddress_et_layout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginEnd="@dimen/_10sdp"
                         android:layout_marginStart="@dimen/_15sdp"
-                        android:theme="@style/TextInputLayoutAppearance"
-                        android:hint="@string/address">
-
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_weight="1"
+                        android:hint="@string/address"
+                        app:boxBackgroundColor="@color/et_background_color"
+                        app:boxCornerRadiusBottomEnd="@dimen/textInputLayout_radius"
+                        app:boxCornerRadiusBottomStart="@dimen/textInputLayout_radius"
+                        app:boxCornerRadiusTopEnd="@dimen/textInputLayout_radius"
+                        app:boxCornerRadiusTopStart="@dimen/textInputLayout_radius"
+                        app:boxStrokeColor="@color/text_input_layout_stroke_color"
+                        app:boxStrokeErrorColor="@color/error_color"
+                        app:errorTextColor="@color/error_color"
+                        android:layout_gravity="center_vertical"
+                        app:hintTextColor="@color/et_hint_color">
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/et_center_address"
+                            android:id="@+id/add_center_activity_CenterAddress_et"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_41sdp"
-                            android:inputType="text" />
-
+                            android:fontFamily="@font/el_messiri_medium"
+                            android:inputType="text"
+                            android:textSize="@dimen/_11ssp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <ImageButton
                         android:id="@+id/location"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_location"
+                        android:layout_marginEnd="@dimen/_10sdp"
                         android:background="@color/beige"
-                        android:layout_marginEnd="@dimen/_10sdp"/>
+                        android:src="@drawable/ic_location" />
                 </LinearLayout>
-
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/cycle_maximum"
+                    android:id="@+id/add_center_activity_mixcycles_et_layout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_15sdp"
                     android:layout_marginStart="@dimen/_15sdp"
-                    android:theme="@style/TextInputLayoutAppearance"
-                    android:hint="@string/cycle_maximum">
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:hint="@string/cycle_maximum"
+                    app:boxBackgroundColor="@color/et_background_color"
+                    app:boxCornerRadiusBottomEnd="@dimen/textInputLayout_radius"
+                    app:boxCornerRadiusBottomStart="@dimen/textInputLayout_radius"
+                    app:boxCornerRadiusTopEnd="@dimen/textInputLayout_radius"
+                    app:boxCornerRadiusTopStart="@dimen/textInputLayout_radius"
+                    app:boxStrokeColor="@color/text_input_layout_stroke_color"
+                    app:boxStrokeErrorColor="@color/error_color"
+                    app:errorTextColor="@color/error_color"
+                    app:hintTextColor="@color/et_hint_color">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/et_cycle_maximum"
+                        android:id="@+id/add_center_activity_mixcycles_et"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_41sdp"
-                        android:inputType="number"/>
-
+                        android:fontFamily="@font/el_messiri_medium"
+                        android:inputType="number"
+                        android:textSize="@dimen/_11ssp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Spinner
                     android:id="@+id/center_manger"
+                    style="@style/Widget.AppCompat.Spinner.Underlined"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
-                    android:layout_marginEnd="@dimen/_15sdp"
                     android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
                     android:spinnerMode="dialog"
-                    style="@style/Widget.AppCompat.Spinner.Underlined"
-                    android:theme="@style/ThemeSpinner"/>
+                    />
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/cycle_activity"
@@ -160,28 +191,26 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|start"
                     android:layout_marginStart="@dimen/_15sdp"
-                    android:layout_marginBottom="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_30sdp"
-                    android:src="@drawable/list"
-                    android:backgroundTint="@color/green"/>
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:backgroundTint="@color/green"
+                    android:src="@drawable/list" />
 
                 <Button
                     android:id="@+id/btn_save"
+                    style="@style/ThemeButton"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_36sdp"
-                    android:layout_marginEnd="@dimen/_15sdp"
                     android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
                     android:layout_marginBottom="@dimen/_5sdp"
-                    android:text="@string/save"
-                    style="@style/ThemeButton" />
+                    android:text="@string/save" />
 
 
             </LinearLayout>
 
         </ScrollView>
     </androidx.core.widget.NestedScrollView>
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

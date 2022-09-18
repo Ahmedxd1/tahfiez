@@ -19,7 +19,6 @@
             android:layout_marginTop="@dimen/_15sdp"
             android:src="@drawable/add_image"
             app:civ_border_color="#FF000000"
-
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_login1" />
